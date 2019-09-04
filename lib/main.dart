@@ -1,7 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:friendly/ui/login/slides.dart';
+import 'package:friendly/ui/gradients.dart';
+import 'package:friendly/ui/login/background.dart';
+import 'package:friendly/ui/login/landing.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
@@ -15,12 +18,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: true,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.white,
+        accentColor: Colors.black,
+        fontFamily: 'Varela',
+        textTheme: TextTheme(
+          body1: TextStyle(fontSize: 14.0, fontFamily: 'Montserrat'),
+        ),
       ),
-      home: Slide(),
+      home: ChangeNotifierProvider(
+        builder: (context) => ColorTheme(quepalGradients),
+        child: Material(
+          child: Stack(
+            children: <Widget>[
+              Background(),
+              LandingScreen()
+            ],
+          ),
+        )
+      ),
     );
   }
 }

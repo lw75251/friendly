@@ -7,6 +7,8 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 class CustomPagination extends SwiperPlugin {
   /// dot style pagination  
   static const SwiperPlugin dots = const DotSwiperPaginationBuilder(
+    color: Colors.black12,
+    activeColor: Colors.white,
     space: 15.0
   );
 
@@ -110,10 +112,9 @@ class CustomSwiperControl extends SwiperPlugin {
 
   @override
   Widget build(BuildContext context, SwiperPluginConfig config) {
-    ThemeData themeData = Theme.of(context);
 
-    Color color = this.color ?? themeData.primaryColor;
-    Color disableColor = this.disableColor ?? themeData.disabledColor;
+    Color color = this.color;
+    Color disableColor = this.disableColor;
     Color prevColor;
     Color nextColor;
 

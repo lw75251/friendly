@@ -1,5 +1,6 @@
-import 'package:divvy/ui/gradients.dart';
+
 import 'package:flutter/material.dart';
+import 'package:friendly/ui/gradients.dart';
 import 'package:provider/provider.dart';
 
 class ColorList extends StatelessWidget {
