@@ -1,6 +1,17 @@
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
+// class Logo extends StatelessWidget {
+//   const Logo(this._size, {Key key}) : super(key: key);
+//   final double _size;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       child: widget(child: FlutterLogo(size: _size))
+//     );
+//   }
+// }
 
 class Logo extends StatelessWidget {
 

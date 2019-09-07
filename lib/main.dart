@@ -1,9 +1,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:friendly/routes/router.dart';
+import 'package:friendly/routes/undefined_view.dart';
 import 'package:friendly/ui/gradients.dart';
 import 'package:friendly/ui/login/background.dart';
-import 'package:friendly/ui/login/landing.dart';
+import 'package:friendly/ui/login/slides.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -15,11 +17,17 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+  MyApp(){
+    Routes.defineRoutes(router);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: true,
       title: 'Flutter Demo',
+
+      // *THEME 
       theme: ThemeData(
         primaryColor: Colors.white,
         accentColor: Colors.black,
@@ -28,17 +36,14 @@ class MyApp extends StatelessWidget {
           body1: TextStyle(fontSize: 14.0, fontFamily: 'Montserrat'),
         ),
       ),
-      home: ChangeNotifierProvider(
-        builder: (context) => ColorTheme(quepalGradients),
-        child: Material(
-          child: Stack(
-            children: <Widget>[
-              Background(),
-              LandingScreen()
-            ],
-          ),
-        )
-      ),
+
+      // *ROUTES 
+      // initialRoute: welcomeRoute,
+      onGenerateRoute: router.generator,
+      onUnknownRoute: (settings) => MaterialPageRoute(
+        builder: (context) => UndefinedView(
+              name: settings.name,
+      )),
     );
   }
 }

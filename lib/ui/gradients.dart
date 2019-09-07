@@ -12,6 +12,18 @@ class ColorTheme with ChangeNotifier {
   }
 }
 
+// const Map<String, List<Color>> colorThemes1 = {
+//   "orangeGradients": orangeGradients,
+//   "aquaGradients": aquaGradients,
+//   "quepalGradients": quepalGradients,
+//   "bigheadGradients": bigheadGradients,
+//   "hydrogenGradients": hydrogenGradients,
+//   "orangecoralGradients": orangecoralGradients,
+//   "socialiveGradients": socialiveGradients,
+//   "blueskiesGradients": blueskiesGradients,
+//   "digitalWaterGradients": digitalWaterGradients
+// };
+
 const List<List<Color>> colorThemes = [
   orangeGradients,
   aquaGradients,

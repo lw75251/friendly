@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:friendly/routes/router.dart';
 import 'package:friendly/ui/gradients.dart';
 import 'package:provider/provider.dart';
 
@@ -7,22 +8,50 @@ class LandingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double _fontSize = 30.0; 
+    // TODO: Make Screen Responsive
+    // final MediaQueryData queryData = MediaQuery.of(context);
+    // final Size _size = queryData.size;
+    final double _fontSize = 30.0;
+
     return Container(
       child: Center(
         child: Column(
           children: <Widget>[
             // Logo(50.0,50.0),
-            FlutterLogo(
-              size: 150.0
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 50.0, bottom: 10.0
+              ),
+              child: FlutterLogo(
+                size: 150.0
+              ),
             ),
-            WelcomeText(_fontSize),
-            WelcomeSubText(_fontSize),
-            WelcomeButton(_fontSize)
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 10.0, bottom:  30.0
+              ),
+              child: WelcomeText(_fontSize),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 250.0),
+              child: WelcomeSubText(_fontSize*.6),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: WelcomeButton(12.0),
+            ),
+            ExistingAccountText()
+
           ],
         ),
       ),
     );
+    // return Stack(
+    //   children: <Widget>[
+    //     FlutterLogo()
+    //   ],
+    // );
+
   }
 }
 
@@ -71,7 +100,7 @@ class WelcomeButton extends StatelessWidget {
       color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.only(left: 50, right: 50, top: 10.0, bottom: 10.0 ),
-        child: Text("Hi, Friendly",
+        child: Text("Hi, Friendly".toUpperCase(),
             style: TextStyle(
               fontSize: _fontSize,
               foreground: Paint()..shader = LinearGradient(
@@ -80,8 +109,25 @@ class WelcomeButton extends StatelessWidget {
             )
           ),
       ),
-      onPressed: (){},
+      onPressed: (){
+        router.navigateTo(context, signUpRoute);
+      },
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))
+    );
+  }
+}
+
+class ExistingAccountText extends StatelessWidget {
+  const ExistingAccountText({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      child: Text("I already have an account".toUpperCase(),
+        style: TextStyle(
+          color: Colors.white,
+        ),
+      ),
     );
   }
 }
