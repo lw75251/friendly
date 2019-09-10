@@ -1,6 +1,9 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:friendly/routes/router.dart';
 import 'package:friendly/ui/gradients.dart';
+import 'package:friendly/ui/login/sign_in.dart';
+import 'package:friendly/ui/login/slides.dart';
 import 'package:provider/provider.dart';
 
 class LandingScreen extends StatelessWidget {
@@ -13,8 +16,7 @@ class LandingScreen extends StatelessWidget {
     // final Size _size = queryData.size;
     final double _fontSize = 30.0;
 
-    return Container(
-      child: Center(
+    return Center(
         child: Column(
           children: <Widget>[
             // Logo(50.0,50.0),
@@ -22,8 +24,11 @@ class LandingScreen extends StatelessWidget {
               padding: const EdgeInsets.only(
                 top: 50.0, bottom: 10.0
               ),
-              child: FlutterLogo(
-                size: 150.0
+              child: Hero(
+                tag: "logo",
+                child: FlutterLogo(
+                  size: 150.0
+                ),
               ),
             ),
             Padding(
@@ -41,16 +46,9 @@ class LandingScreen extends StatelessWidget {
               child: WelcomeButton(12.0),
             ),
             ExistingAccountText()
-
           ],
         ),
-      ),
     );
-    // return Stack(
-    //   children: <Widget>[
-    //     FlutterLogo()
-    //   ],
-    // );
 
   }
 }
@@ -110,7 +108,10 @@ class WelcomeButton extends StatelessWidget {
           ),
       ),
       onPressed: (){
-        router.navigateTo(context, signUpRoute);
+        router.navigateTo(context, signUpRoute,
+          transition: TransitionType.inFromBottom,
+          transitionDuration: Duration(milliseconds: 1000)
+        );
       },
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))
     );

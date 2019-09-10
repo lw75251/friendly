@@ -34,6 +34,7 @@ class CustomPagination extends SwiperPlugin {
         (config.scrollDirection == Axis.horizontal
             ? Alignment.bottomCenter
             : Alignment.topRight);
+
     Widget child = Transform.translate(
       offset: Offset(0, 80.0),
       child: Transform.rotate(

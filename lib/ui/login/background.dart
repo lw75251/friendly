@@ -13,8 +13,8 @@ class Background extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: colorTheme.gradient,
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter
         )
       ),
     );

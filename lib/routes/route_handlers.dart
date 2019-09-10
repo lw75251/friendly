@@ -9,15 +9,17 @@ import 'package:provider/provider.dart';
 Handler welcomeHandler = Handler(
   handlerFunc: (BuildContext context, Map<String, List<String>> params) {
     return ChangeNotifierProvider(
-          builder: (context) => ColorTheme(quepalGradients),
-          child: Material(
-            child: Stack(
-              children: <Widget>[
-                Background(),
-                LandingScreen()
-              ],
-            ),
-    ));
+      builder: (context) => ColorTheme(quepalGradients),
+      child: Material(
+        child: Stack(
+          children: <Widget>[
+            Background(),
+            LandingScreen()
+          ],
+        ),
+      ),
+    );
+
   });
 
 Handler signUpHandler = Handler(
@@ -29,7 +31,7 @@ Handler signUpHandler = Handler(
             child: Stack(
               children: <Widget>[
                 Background(),
-                FriendlySwiper()
+                SignUpScreens()
               ],
             ),
     ));

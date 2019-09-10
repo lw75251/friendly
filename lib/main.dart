@@ -3,10 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:friendly/routes/router.dart';
 import 'package:friendly/routes/undefined_view.dart';
-import 'package:friendly/ui/gradients.dart';
-import 'package:friendly/ui/login/background.dart';
-import 'package:friendly/ui/login/slides.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
@@ -38,12 +34,16 @@ class MyApp extends StatelessWidget {
       ),
 
       // *ROUTES 
-      // initialRoute: welcomeRoute,
       onGenerateRoute: router.generator,
       onUnknownRoute: (settings) => MaterialPageRoute(
         builder: (context) => UndefinedView(
               name: settings.name,
       )),
+
+      // home: ChangeNotifierProvider(
+      //   builder: (context) => ColorTheme(quepalGradients),
+      //   child: SignInScreen(),
+      // ),
     );
   }
 }

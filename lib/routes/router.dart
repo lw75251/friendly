@@ -34,7 +34,7 @@ final router = Router();
 class Routes {
   static void defineRoutes(Router router) {
     router.define(welcomeRoute, handler: welcomeHandler, transitionType: TransitionType.fadeIn);
-    router.define(signUpRoute, handler: signUpHandler, transitionType: TransitionType.inFromBottom);
+    router.define(signUpRoute, handler: signUpHandler, transitionType: TransitionType.custom);
     // router.define(demoSimpleFixedTrans,
     //     handler: demoRouteHandler, transitionType: TransitionType.inFromLeft);
     // router.define(demoFunc, handler: demoFunctionHandler);
@@ -44,3 +44,29 @@ class Routes {
     // router.define("users/:id", handler: usersHandler, transitionType: TransitionType.inFromLeft);
   }
 }
+
+// class SlideRightRoute extends PageRouteBuilder {
+//   final Widget page;
+//   SlideRightRoute({this.page})
+//       : super(
+//           pageBuilder: (
+//             BuildContext context,
+//             Animation<double> animation,
+//             Animation<double> secondaryAnimation,
+//           ) =>
+//               page,
+//           transitionsBuilder: (
+//             BuildContext context,
+//             Animation<double> animation,
+//             Animation<double> secondaryAnimation,
+//             Widget child,
+//           ) =>
+//               SlideTransition(
+//                 position: Tween<Offset>(
+//                   begin: const Offset(-1, 0),
+//                   end: Offset.zero,
+//                 ).animate(animation),
+//                 child: child,
+//               ),
+//         );
+// }
