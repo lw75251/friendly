@@ -11,7 +11,7 @@ class AccountScreen extends StatelessWidget {
       physics: NeverScrollableScrollPhysics(),
       children: <Widget>[
         LandingScreen(),
-        SignInScreen()
+        SignInPage()
       ],
     );
   }
