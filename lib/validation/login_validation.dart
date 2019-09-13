@@ -15,7 +15,27 @@ class LoginFormState extends State<LoginForm> {
   //
   // Note: This is a GlobalKey<FormState>,
   // not a GlobalKey<LoginFormState>.
+  final _color = Colors.white;
   final _formKey = GlobalKey<FormState>();
+  final _fieldSize = 20.0;
+  final _labelSize = 12.0;
+
+  buildTextFieldForm(String string, String label ) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 30),
+      child: Column(
+        children: <Widget>[
+          TextField(
+            decoration: InputDecoration.collapsed(hintText: string),
+            style: TextStyle(color: _color, fontSize: _fieldSize),
+          ),
+          Text(label, 
+            textAlign: TextAlign.left,
+            style: TextStyle(color: _color, fontSize: _labelSize,))
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,34 +44,11 @@ class LoginFormState extends State<LoginForm> {
       key: _formKey,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30.0),
-            child: TextFormField(
-              validator: (value) {
-                if (value.isEmpty) {
-                  return 'Please enter some text';
-                }
-                return null;
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: RaisedButton(
-              onPressed: () {
-                // Validate returns true if the form is valid, or false
-                // otherwise.
-                if (_formKey.currentState.validate()) {
-                  // If the form is valid, display a Snackbar.
-                  Scaffold.of(context)
-                      .showSnackBar(SnackBar(content: Text('Processing Data')));
-                }
-              },
-              child: Text('Submit'),
-            ),
-          ),
+          buildTextFieldForm("Email", "Account Email".toUpperCase()),
+          buildTextFieldForm("Password", "Account Password".toUpperCase())
+
         ],
       ),
     );
