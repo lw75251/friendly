@@ -3,11 +3,47 @@ import 'package:friendly/ui/gradients.dart';
 import 'package:provider/provider.dart';
 
 class LandingPage extends StatelessWidget {
-  final PageController controller;
+  final PageController landingController;
+  final PageController accountController;
+
+  final _duration = const Duration(milliseconds: 300);
+  final _curve = Curves.decelerate;
+
   const LandingPage({
-    this.controller,
+    this.landingController,
+    this.accountController,
     Key key
   }) : super(key: key);
+
+  Widget buildButton(double _fontSize, _colors ) {
+    return RaisedButton(
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 50, right: 50, top: 10.0, bottom: 10.0 ),
+        child: Text("Hi, Friendly".toUpperCase(),
+            style: TextStyle(
+              fontSize: _fontSize,
+              foreground: Paint()..shader = LinearGradient(
+                colors: _colors
+              ).createShader(Rect.fromLTRB(0.0, 0.0, 200.0, 70.0))
+            )
+          ),
+      ),
+      onPressed: (){
+        landingController.nextPage(duration: _duration, curve: _curve); 
+      },
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))
+    );
+  }
+
+  Widget buildText(String string, double fontSize, Color color, EdgeInsets padding) {
+    return Padding (
+      padding: padding, 
+      child: Text(string,
+        textAlign: TextAlign.center,
+        style: TextStyle(color: Colors.white, fontSize: fontSize),
+      ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +51,10 @@ class LandingPage extends StatelessWidget {
     // final MediaQueryData queryData = MediaQuery.of(context);
     // final Size _size = queryData.size;
     final double _fontSize = 30.0;
+    final Color _fontColor = Colors.white;
+    final ColorTheme _colorTheme = Provider.of<ColorTheme>(context);
+    final List<Color> _colors = _colorTheme.gradient;
+
 
     return Center(
         child: Column(
@@ -31,101 +71,26 @@ class LandingPage extends StatelessWidget {
                 ),  
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 10.0, bottom:  30.0
-              ),
-              child: WelcomeText(_fontSize),
+            buildText("Hi there,\n I'm Reflectly",
+              _fontSize, _fontColor, EdgeInsets.only(top: 10.0, bottom: 30.0)
+            ),
+            buildText("Your new personal relationship \n management companion",
+              _fontSize*.6, _fontColor, EdgeInsets.only(bottom: 250.0)
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 250.0),
-              child: WelcomeSubText(_fontSize*.6),
+              padding: const EdgeInsets.only(bottom: 10.0),
+              child: buildButton(_fontSize/1.5, _colors)
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: WelcomeButton(12.0),
-            ),
-            ExistingAccountText()
+            InkWell(
+              child: buildText("I already have an account".toUpperCase(), 
+                _fontSize/2.5, _fontColor, EdgeInsets.only(bottom: 5.0)),
+              onTap: (){
+                accountController.nextPage(duration: _duration, curve: _curve);
+              },
+            )
           ],
         ),
     );
 
-  }
-}
-
-class WelcomeText extends StatelessWidget {
-  final double _fontSize;
-  const WelcomeText( this._fontSize, {Key key}): super(key: key);
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Text("Hi there,\n I'm Reflectly",
-        textAlign: TextAlign.center,
-        style: TextStyle(fontSize: _fontSize, color: Colors.white) 
-      ),
-    );
-  }
-}
-
-class WelcomeSubText extends StatelessWidget {
-  final double _fontSize;
-  const WelcomeSubText(this._fontSize, {Key key}) : super(key: key);
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Text("Your new personal relationship \n management companion",
-        textAlign: TextAlign.center,
-        style: TextStyle(fontSize: _fontSize, color: Colors.white),
-      ),
-    );
-  }
-}
-
-class WelcomeButton extends StatelessWidget {
-  final double _fontSize;
-
-  const WelcomeButton(this._fontSize, {Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final ColorTheme colorTheme = Provider.of<ColorTheme>(context);
-
-    return RaisedButton(
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.only(left: 50, right: 50, top: 10.0, bottom: 10.0 ),
-        child: Text("Hi, Friendly".toUpperCase(),
-            style: TextStyle(
-              fontSize: _fontSize,
-              foreground: Paint()..shader = LinearGradient(
-                colors: colorTheme.gradient
-              ).createShader(Rect.fromLTRB(0.0, 0.0, 200.0, 70.0))
-            )
-          ),
-      ),
-      onPressed: (){
-
-      },
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))
-    );
-  }
-}
-
-class ExistingAccountText extends StatelessWidget {
-  const ExistingAccountText({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      child: Text("I already have an account".toUpperCase(),
-        style: TextStyle(
-          color: Colors.white,
-        ),
-      ),
-    );
   }
 }

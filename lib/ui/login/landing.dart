@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:friendly/swiper/swiper_controls.dart';
 import 'package:friendly/ui/login/landing_page.dart';
 import 'package:friendly/ui/login/sign_in.dart';
 import 'package:friendly/ui/login/slides.dart';
@@ -14,11 +12,13 @@ class _LandingScreenState extends State<LandingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    PageController landingController = PageController();
-    PageController slideController = PageController();
+    var landingController = PageController();
+    var slideController = PageController();
+    var accountController = PageController();
     return Stack(
       children: <Widget>[
         PageView(
+          controller: accountController,
           physics: NeverScrollableScrollPhysics(),
           children: <Widget>[
             PageView(
@@ -26,14 +26,19 @@ class _LandingScreenState extends State<LandingScreen> {
               scrollDirection: Axis.vertical,
               controller: landingController,
               children: <Widget>[
-                LandingPage(),
+                LandingPage(
+                  landingController: landingController,
+                  accountController: accountController
+                ),
                 SignUpScreens(
                   slideController: slideController,
                   landingController: landingController,
                 ),
               ],
             ),
-            SignInPage(),
+            SignInPage(
+              accountController: accountController
+            ),
           ],
         ),
       ],

@@ -1,95 +1,85 @@
 import 'package:flutter/material.dart';
-
-List<String> images = ["assets/1.jpg", "assets/2.jpg", "assets/3.jpg"];
-
-List<String> text0 = ["春归何处。寂寞无行路", "春无踪迹谁知。除非问取黄鹂", "山色江声相与清，卷帘待得月华生"];
-List<String> text1 = ["若有人知春去处。唤取归来同住", "百啭无人能解，因风飞过蔷薇", "可怜一曲并船笛，说尽故人离别情。"];
+import 'package:friendly/validation/login_validation.dart';
 
 class SignInPage extends StatelessWidget {
+  final PageController accountController;
+
+  final _duration = const Duration(milliseconds: 300);
+  final _curve = Curves.decelerate;
+  final _color = Colors.white;
+
+  const SignInPage({
+    this.accountController,
+    Key key
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        buildButtons(),
+        buildText("Account\nLogin", Colors.black, 60, 0.1),
+        LoginForm()
+      ],
+    );
+  }
 
-    return Text("Second");
+  Widget buildButtons() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        buildBackButton(),
+        buildFacebookButton()
+      ]
+    );
+  }
 
-    // return Container(
-    //   child: TransformerPageView(
-    //     transformer: PageTransformerBuilder(
-    //       builder: (child, info) => Material(
-    //         textStyle: TextStyle(color: Colors.white),
-    //         child: Stack(
-    //           children: <Widget>[
-    //             LandingScreen(),
-    //             SignInScreen(),
-    //           ],
-    //         ),
-    //       )
-    //     ),
-    //     itemCount: 2,
-    //   )
-    // );
+  Widget buildBackButton() {
+    return Container(
+      padding: EdgeInsets.only(left: 20,top: 30),
+      child: GestureDetector(
+        child: BackButtonIcon(),
+        onTap: (){
+          accountController.previousPage(duration: _duration, curve: _curve);
+        },
+      )
+    );
+  }
 
-    // return Container(
-    //   child: Stack(
-    //     children: <Widget>[
-    //       TransformerPageView(
-    //           transformer: PageTransformerBuilder(
-    //               builder: (Widget child, TransformInfo info) {
-    //             return Material(
-    //                 textStyle: TextStyle(color: Colors.white),
-    //                 child: Stack(
-    //                   fit: StackFit.expand,
-    //                   children: <Widget>[
-    //                     ParallaxImage.asset(
-    //                       images[info.index],
-    //                       position: info.position,
-    //                     ),
-    //                     DecoratedBox(
-    //                       decoration: BoxDecoration(
-    //                         gradient: LinearGradient(
-    //                           begin: FractionalOffset.bottomCenter,
-    //                           end: FractionalOffset.topCenter,
-    //                           colors: [
-    //                             const Color(0xFF000000),
-    //                             const Color(0x33FFC0CB),
-    //                           ],
-    //                         ),
-    //                       ),
-    //                     ),
-    //                     Positioned(
-    //                       child: Column(
-    //                         mainAxisSize: MainAxisSize.min,
-    //                         crossAxisAlignment: CrossAxisAlignment.start,
-    //                         children: <Widget>[
-    //                           ParallaxContainer(
-    //                             child: Text(
-    //                               text0[info.index],
-    //                               style: TextStyle(fontSize: 15.0),
-    //                             ),
-    //                             position: info.position,
-    //                             translationFactor: 300.0,
-    //                           ),
-    //                           SizedBox(
-    //                             height: 8.0,
-    //                           ),
-    //                           ParallaxContainer(
-    //                             child: Text(text1[info.index],
-    //                                 style: TextStyle(fontSize: 18.0)),
-    //                             position: info.position,
-    //                             translationFactor: 200.0,
-    //                           ),
-    //                         ],
-    //                       ),
-    //                       left: 10.0,
-    //                       right: 10.0,
-    //                       bottom: 10.0,
-    //                     )
-    //                   ],
-    //                 ),
-    //               );
-    //           }),
-    //           itemCount: 3)
-    //     ],
-    //   ),
-    // );
+  Widget buildFacebookButton() {
+    return Container(
+      width: 80,
+      height: 80,
+      padding: EdgeInsets.all(15.0),
+      child: FloatingActionButton(
+        elevation: 15,
+        child: Icon(Icons.face),
+        backgroundColor: Colors.blue[300],
+        onPressed: (){
+          //TODO: Connect to Facebook
+        },
+      ),
+    );
+  }
+
+  Widget buildText(String text, Color color, double fontSize, double opacity) {
+    return Align(
+      alignment: Alignment.topCenter,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 50.0),
+        child: Opacity(
+          opacity: opacity,
+          child: Text(text,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: color,
+              fontSize: fontSize,
+              fontWeight: FontWeight.w600
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 
 class SwiperControls extends StatefulWidget {
   final PageController slideController;
@@ -36,7 +35,7 @@ class SwiperControls extends StatefulWidget {
 class _SwiperControlsState extends State<SwiperControls> {
 
   int _activeIndex = 0;
-  Duration _duration = Duration(milliseconds: 300);
+  Duration _duration = Duration(milliseconds: 900);
   Curve _curve = Curves.ease;
 
   Widget buildTopButton(Color color, IconData iconData, int quarterTurns, bool hasNext ) {
@@ -90,7 +89,7 @@ class _SwiperControlsState extends State<SwiperControls> {
   Widget buildButton(Color color, IconData iconData,
       int quarterTurns, bool previous) {
     Curve _curve = Curves.easeIn;
-    Duration _duration = Duration(milliseconds: 300);
+    Duration _duration = Duration(milliseconds: 900);
     return new GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
@@ -120,7 +119,6 @@ class _SwiperControlsState extends State<SwiperControls> {
   @override
   Widget build(BuildContext context) {
 
-    int activeIndex = widget.slideController.page != null ? widget.slideController.page.floor() : 0;
     int itemCount = widget.itemCount;
     Color activeColor = widget.activeColor;
     Color color = widget.color;
