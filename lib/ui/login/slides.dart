@@ -57,13 +57,13 @@ class SignUpSlide extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Align (
-        alignment: Alignment.topLeft,
-        child: Hero(
-          tag: "logo",
-          child: FlutterLogo(size: 50),
-        ),
-      ),
+      // child: Align (
+      //   alignment: Alignment.topLeft,
+      //   child: Hero(
+      //     tag: "logo",
+      //     child: FlutterLogo(size: 50),
+      //   ),
+      // ),
     );
   }
 }

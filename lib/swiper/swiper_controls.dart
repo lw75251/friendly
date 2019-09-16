@@ -25,8 +25,7 @@ class SwiperControls extends StatefulWidget {
     this.key,
   }) : assert (slideController != null),
        assert (landingController != null),
-       super(key: key)
-  ;
+       super(key: key);
 
   @override
   _SwiperControlsState createState() => _SwiperControlsState();

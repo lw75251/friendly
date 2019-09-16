@@ -59,7 +59,6 @@ class LandingPage extends StatelessWidget {
     return Center(
         child: Column(
           children: <Widget>[
-            // Logo(50.0,50.0),
             Padding(
               padding: const EdgeInsets.only(
                 top: 50.0, bottom: 10.0
@@ -74,6 +73,9 @@ class LandingPage extends StatelessWidget {
             buildText("Hi there,\n I'm Reflectly",
               _fontSize, _fontColor, EdgeInsets.only(top: 10.0, bottom: 30.0)
             ),
+            // buildText("Hi there,\n I'm Reflectly",
+            //   _fontSize, _fontColor, EdgeInsets.only(top: 260.0, bottom: 30.0)
+            // ),
             buildText("Your new personal relationship \n management companion",
               _fontSize*.6, _fontColor, EdgeInsets.only(bottom: 250.0)
             ),
