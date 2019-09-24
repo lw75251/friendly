@@ -1,6 +1,8 @@
 
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
+import 'package:friendly/routes/router.dart';
 import 'package:friendly/swiper/pagination.dart';
 import 'package:friendly/swiper/swiper_controls.dart';
 import 'package:friendly/ui/gradients.dart';
@@ -85,7 +87,13 @@ class ReminderSlide extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // child: child,
+      child: RaisedButton(
+        onPressed: (){
+          router.navigateTo(context, homeRoute,
+            transition: TransitionType.fadeIn
+          );
+        },
+      )
     );
   }
 }

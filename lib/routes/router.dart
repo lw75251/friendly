@@ -27,14 +27,14 @@ import 'package:friendly/routes/route_handlers.dart';
 
 
 const String welcomeRoute = '/';
-const String signUpRoute = '/signup';
+const String homeRoute = '/home';
 
 final router = Router();
 
 class Routes {
   static void defineRoutes(Router router) {
     router.define(welcomeRoute, handler: welcomeHandler, transitionType: TransitionType.fadeIn);
-    router.define(signUpRoute, handler: signUpHandler, transitionType: TransitionType.custom);
+    router.define(homeRoute, handler: mainHandler, transitionType: TransitionType.fadeIn);
     // router.define(demoSimpleFixedTrans,
     //     handler: demoRouteHandler, transitionType: TransitionType.inFromLeft);
     // router.define(demoFunc, handler: demoFunctionHandler);

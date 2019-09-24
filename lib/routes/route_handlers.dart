@@ -1,6 +1,7 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:friendly/ui/gradients.dart';
+import 'package:friendly/ui/home/home_screen.dart';
 import 'package:friendly/ui/login/background.dart';
 import 'package:friendly/ui/login/landing.dart';
 import 'package:friendly/ui/login/slides.dart';
@@ -22,19 +23,13 @@ Handler welcomeHandler = Handler(
 
   });
 
-Handler signUpHandler = Handler(
+Handler mainHandler = Handler(
   handlerFunc: (BuildContext context, Map<String, List<String>> params ) {
     List<Color> gradient = quepalGradients;
     return ChangeNotifierProvider(
           builder: (context) => ColorTheme(gradient),
-          child: Material(
-            child: Stack(
-              children: <Widget>[
-                Background(),
-                SignUpScreens()
-              ],
-            ),
-    ));
+          child: HomeScreen()
+    );
   });
 
 // Handler demoRouteHandler = Handler(
